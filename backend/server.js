@@ -61,6 +61,47 @@ app.post("/comments", async (req, res, next) => {
   }
 });
 
+app.get("/replies", async (req, res, next) => {
+  try {
+    const replies = await prisma.reply.findMany({
+      include: {
+        comment: true,
+      },
+    });
+    res.json(replies);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.post("/replies", async (req, res, next) => {
+  try {
+    const { comment_id, content } = req.body;
+
+    if (!comment_id || !content) res.sendStatus(400);
+
+    const reply = await prisma.reply.create({
+      data: {
+        content,
+        comment: {
+          connect: {
+            id: comment_id,
+          },
+        },
+      },
+    });
+    res.json(reply).status(204);
+  } catch (err) {
+    if (err.code === "P2016") {
+      res.sendStatus(400);
+    } else {
+      next(err);
+    }
+  }
+});
+
+
+
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(500).json({ error: err.toString() });

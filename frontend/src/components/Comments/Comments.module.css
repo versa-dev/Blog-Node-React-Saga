@@ -81,6 +81,8 @@
     border-radius: 20px;
     transition: all 0.3s ease;
     box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    left:3%;
 }
 .save_reply_button {
     padding: 5px 10px;
@@ -95,5 +97,12 @@
     background-color: blue;
     color:white;
     position: relative;
-    left:90%;
+    left:80%;
+}
+.comment__dropdown {
+  grid-area: select;
+}
+
+.comment__dropdown > * + * {
+  margin-left: 10px;
 }

@@ -20,6 +20,15 @@ CREATE TABLE IF NOT EXISTS comment (
     FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE
 );
 `;
+const createRepliesQuery = `
+CREATE TABLE IF NOT EXISTS reply (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    content TEXT DEFAULT '' NOT NULL,
+    comment_id INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (comment_id) REFERENCES comment (id) ON DELETE CASCADE
+);
+`;
 
 const insertUserQuery = `
 INSERT INTO user 
@@ -40,6 +49,9 @@ db.serialize(() => {
 
   db.run(createCommentsQuery);
   console.log("[✔️] Added comment table successfully");
+
+  db.run(createRepliesQuery);
+  console.log("[✔️] Added reply table successfully");
 
   db.run(insertUserQuery);
   console.log("[✔️] Inserted seed data successfully");

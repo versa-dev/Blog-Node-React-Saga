@@ -4,10 +4,7 @@ import styles from './Comments.module.css'
 import useComments from "../../hooks/useComments";
 import Comment from "./Comment"
 
-const getComments = comment => {
-   
-    return <Comment comment = {comment} />
-}
+
 function CommentList(){
     const { comments } = useComments();
     
