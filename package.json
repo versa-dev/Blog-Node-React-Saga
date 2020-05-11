@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "start": "concurrently \"yarn frontend:start\" \"yarn backend:start\"",
+    "build": "yarn workspace frontend build",
+    "frontend:start": "yarn workspace frontend start",
+    "backend:start": "yarn workspace backend start",
+    "backend:setup": "yarn workspace backend setup",
+    "backend:introspect": "yarn workspace backend introspect",
+    "backend:generate": "yarn workspace backend generate",
+    "backend:admin": "yarn workspace backend admin",
+    "backend:clean": "yarn workspace backend clean"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0"
+  }
+}

@@ -1,0 +1,63 @@
+ .compose {
+    padding: 20px 40px;
+    margin-bottom: 20px;
+    background-color: rgb(17, 48, 80);
+    border-radius: 5px;
+  }
+  
+  .compose > * + * {
+    margin-top: 20px;
+  }
+  
+  .compose__heading {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: rgb(213, 235, 255);
+    margin-bottom: 0;
+  }
+  
+  .compose__body {
+    display: grid;
+    grid-template-areas:
+      "textarea textarea"
+      "select button";
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .compose__textarea {
+    grid-area: textarea;
+  
+    background-color: #0e2740;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    min-width: 100%;
+    max-width: 100%;
+    max-height: 30em;
+    padding: 10px 15px;
+    resize: none;
+  
+    font-family: inherit;
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 1.9;
+  }
+  
+  .compose__textarea:focus {
+    outline-color: white;
+  }
+  
+  .compose__dropdown {
+    grid-area: select;
+  }
+  
+  .compose__dropdown > * + * {
+    margin-left: 10px;
+  }
+  
+  .compose__button {
+    grid-area: button;
+    justify-self: flex-end;
+  }
+  

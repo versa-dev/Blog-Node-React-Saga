@@ -1,0 +1,148 @@
+.comments-container {
+  max-width: 50em;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.comments-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.comments-header > h1 {
+  font-weight: 500;
+}
+
+.comments > * + * {
+  margin-top: 20px;
+}
+
+.comment {
+  padding: 20px 40px;
+  background-color: rgb(17, 48, 80);
+  border-radius: 5px;
+  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.2);
+}
+
+.comment__header {
+  display: flex;
+  align-items: center;
+}
+
+.comment__heading {
+  flex: 1;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: rgb(213, 235, 255);
+}
+
+.comment_timestamp {
+  font-size: 0.9rem;
+  color: rgb(73, 116, 156);
+}
+
+.comment__body {
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1.9;
+}
+
+.compose {
+  padding: 20px 40px;
+  margin-bottom: 20px;
+  background-color: rgb(17, 48, 80);
+  border-radius: 5px;
+}
+
+.compose > * + * {
+  margin-top: 20px;
+}
+
+.compose__heading {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: rgb(213, 235, 255);
+  margin-bottom: 0;
+}
+
+.compose__body {
+  display: grid;
+  grid-template-areas:
+    "textarea textarea"
+    "select button";
+  align-items: center;
+  gap: 20px;
+}
+
+.compose__textarea {
+  grid-area: textarea;
+
+  background-color: #0e2740;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  min-width: 100%;
+  max-width: 100%;
+  max-height: 30em;
+  padding: 10px 15px;
+  resize: none;
+
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1.9;
+}
+
+.compose__textarea:focus {
+  outline-color: white;
+}
+
+.compose__dropdown {
+  grid-area: select;
+}
+
+.compose__dropdown > * + * {
+  margin-left: 10px;
+}
+
+.compose__button {
+  grid-area: button;
+  justify-self: flex-end;
+}
+
+.dropdown {
+  padding: 5px;
+  margin-right: 20px;
+  border: none;
+  background: white;
+  border-radius: 3px;
+  font-family: inherit;
+  font-size: 1.05rem;
+}
+
+.button {
+  padding: 15px 30px;
+  border: none;
+  text-transform: uppercase;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 1.05rem;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
+}
+
+.button--primary {
+  background-color: #c2185b;
+  color: white;
+}
+
+.button--primary:active,
+.button--primary:hover {
+  background-color: white;
+  color: #c2185b;
+}
+
+.button--primary:focus {
+  outline-color: white;
+}

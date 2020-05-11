@@ -1,0 +1,24 @@
+{
+  "name": "backend",
+  "license": "UNLICENSED",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "nodemon server.js",
+    "admin": "prisma --experimental studio",
+    "setup": "yarn node setup.js && prisma generate",
+    "introspect": "prisma introspect",
+    "generate": "prisma generate",
+    "clean": "rm -rf dev.db"
+  },
+  "devDependencies": {
+    "@prisma/cli": "^2.0.0-beta.2",
+    "nodemon": "^2.0.3",
+    "sqlite3": "^4.1.1"
+  },
+  "dependencies": {
+    "@prisma/client": "^2.0.0-beta.2",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}
