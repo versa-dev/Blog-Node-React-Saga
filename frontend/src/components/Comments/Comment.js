@@ -1,10 +1,20 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import styles from './Comments.module.css'
-
+import autosize from "autosize";
 
 
 function Comment(props){
-    console.log(props) 
+    const [add,setAdd] = useState(false)
+    const handleAddClick = () =>{
+      setAdd(!add)
+    }
+    const textareaRef = useRef();
+
+    useEffect(() => {
+      autosize(textareaRef.current);
+    }, []);
+
+
     return(
         <div key={props.comment.id} className={styles.comment}>
             <header className={styles.comment__header}>
@@ -19,6 +29,18 @@ function Comment(props){
                 </span>
               </header>
               <p className={styles.comment__body}>{props.comment.content}</p>
+              <i class="fa fa-comments" aria-hidden="true" style={{ fontSize: "2vw" }} onClick={handleAddClick}></i>
+              {add && (
+                <textarea 
+                  ref={textareaRef}
+                  rows={1}
+                  placeholder="Enter some text"
+                  required
+                  autoFocus
+                  
+                  className={styles.comment__textarea}
+                />
+              )}
         </div>
         
     )

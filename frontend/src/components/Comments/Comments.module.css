@@ -40,4 +40,22 @@
     font-weight: 300;
     line-height: 1.9;
   }
+  .comment__textarea {
+    grid-area: textarea;
   
+    background-color: #0e2740;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    min-width: 100%;
+    max-width: 100%;
+    max-height: 30em;
+    padding: 10px 15px;
+    resize: none;
+  
+    font-family: inherit;
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 1.9;
+    border-radius: 48px;
+  }
