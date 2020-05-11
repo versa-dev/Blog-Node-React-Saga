@@ -60,9 +60,10 @@ export function reducer(state = initialState, action) {
         isFetching: false,
       };
     case actionTypes.SET_COMMENT_CONTENT:
+      debugger
       return {
         ...state,
-        content:action.content
+        content:action.value
       };
     default:
       return state;
@@ -85,11 +86,14 @@ function* createCommentSagaWorker(action) {
   yield call(CommentsService.createComment, userId, content);
   yield call(fetchCommentsSagaWorker);
 }
-
+function* setContentSageWorker(action){
+  yield put(actionTypes.SET_COMMENT_CONTENT, action.value);
+}
 
 export function* commentsSagaWatcher() {
   yield takeLatest(actionTypes.FETCH_COMMENTS, fetchCommentsSagaWorker); 
   yield takeLatest(actionTypes.CREATE_COMMENT, createCommentSagaWorker);
+  yield takeLatest(actionTypes.SET_COMMENT_CONTENT,setContentSageWorker);
 }
 
 export function commentsSelector(state) {

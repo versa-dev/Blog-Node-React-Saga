@@ -5,17 +5,19 @@ import useComments from "../../hooks/useComments";
 import Comment from "./Comment"
 
 const getComments = comment => {
+   
     return <Comment comment = {comment} />
 }
 function CommentList(){
-    const { comments, createComment } = useComments();
+    const { comments } = useComments();
+    
     return(
         <div className={styles.comments}>
             {
                 [...comments]
                 .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
                 .map((comment)=>{
-                    getComments(comment)
+                    return <Comment comment={comment} />
                 })
             }
         </div>

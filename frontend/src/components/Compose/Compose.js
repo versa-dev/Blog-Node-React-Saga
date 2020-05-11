@@ -3,10 +3,12 @@ import styles from './Compose.module.css'
 import useUsers from './../../hooks/useUsers'
 import autosize from "autosize";
 import useComments from "../../hooks/useComments";
+import { connect } from "react-redux"
 
-const Compose = (props) =>{ 
+
+const Compose = () =>{ 
     const { users , selectUser} = useUsers();
-    
+    const { createComment, setCommentContent } = useComments();
     const textareaRef = useRef();
 
     useEffect(() => {
@@ -30,13 +32,13 @@ const Compose = (props) =>{
         if (!userId) {
           alert("No user selected");
           return;
-        }  
-        // selectUser(userId);
-      
-        setContent("");
-       
+        }
+        
+        createComment(userId, content);
+        setContent("")
       },
-      [userId, content]
+      
+      [userId, content,selectUser,setCommentContent]
     );
     return(
         <div className={styles.compose}>

@@ -12,7 +12,7 @@ function useUsers() {
   }, [dispatch]);
   const selectUser = (userId) =>
     dispatch({type:"SELECT_USER", value:userId});
-  return { users, selectUser };
+  return { users, selectUser};
 }
 
 export default useUsers;

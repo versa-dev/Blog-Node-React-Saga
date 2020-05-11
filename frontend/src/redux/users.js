@@ -3,7 +3,7 @@ import { call, put, takeLatest } from "redux-saga/effects";
 import * as UsersService from "../services/users";
 import * as actionTypes from './actionTypes'
 
-
+////--------------Functions---------------/////////
 export function fetchUsers() {
   return {
     type: actionTypes.FETCH_USERS,
@@ -38,7 +38,7 @@ export function selectUser(userId){
     payload:userId
   }
 }
-
+//////////-------------Reducer--------------/////////////
 export function reducer(state = initialState, action) {
   switch (action.type) {
     case actionTypes.FETCH_USERS:
@@ -67,7 +67,7 @@ export function reducer(state = initialState, action) {
       return state;
   }
 }
-
+/////////-----------SagaWorker------------////////////
 function* fetchUsersSagaWorker() {
   try {
     const users = yield call(UsersService.getUsers);
@@ -76,18 +76,17 @@ function* fetchUsersSagaWorker() {
     yield put(fetchUsersFailure(e));
   }
 }
-function* selectUserWorker(action){
-  yield put({type:action.type,userId:action.value})
+function* selectUserSagaWorker(action){
+  yield put(actionTypes.SELECT_USER, action.value);
 }
+/////////---------SagaWatcher--------------///////////
 export function* usersSagaWatcher() {
   yield takeLatest(actionTypes.FETCH_USERS, fetchUsersSagaWorker);
+  yield takeLatest(actionTypes.SELECT_USER, selectUserSagaWorker);
 }
-export function* selectUserWatcher(){
-  yield takeLatest(actionTypes.SELECT_USER,selectUserWorker)
-}
+
+
+///////-----------SagaSelector----------/////////
 export function usersSelector(state) {
   return state.users.users;
-}
-export function usersSelectedUserId(state){
-  return state.selectedUserId;
 }

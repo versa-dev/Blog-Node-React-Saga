@@ -18,10 +18,12 @@ function useComments() {
   const createComment = (userId, content) =>
     dispatch(_createComment(userId, content));
   
-
+  const setCommentContent = (content) =>{
+    dispatch({type:"SET_COMMENT_CONTENT",value:content})
+  }
   
 
-  return { comments, createComment };
+  return { comments, createComment,setCommentContent };
 }
 
 export default useComments;

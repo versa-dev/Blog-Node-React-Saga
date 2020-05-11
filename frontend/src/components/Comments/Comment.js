@@ -1,27 +1,10 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
-import {connect} from "react-redux"
-
 import styles from './Comments.module.css'
-import useComments from "../../hooks/useComments";
-import * as actionTypes from "../../redux/actionTypes";
+
 
 
 function Comment(props){
-    const { comments, createComment } = useComments();
-    const handleSubmit = useCallback(
-        (e) => {
-          e.preventDefault();
-    
-          if (!props.userId) {
-            alert("No user selected");
-            return;
-          }
-    
-          createComment(props.userId, props.content);
-          
-        },
-        [props.userId, props.content, createComment]
-      );
+    console.log(props) 
     return(
         <div key={props.comment.id} className={styles.comment}>
             <header className={styles.comment__header}>
