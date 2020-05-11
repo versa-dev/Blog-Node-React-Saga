@@ -5,8 +5,14 @@ import autosize from "autosize";
 
 function Comment(props){
     const [add,setAdd] = useState(false)
+    const [content,setContent] = useState("");
+    const [save,setSave] = useState(false);
     const handleAddClick = () =>{
       setAdd(!add)
+    }
+    const handleContentChange = (e) => {
+      setContent(e.target.value)
+      content.length? setSave(true):setSave(false);
     }
     const textareaRef = useRef();
 
@@ -29,18 +35,33 @@ function Comment(props){
                 </span>
               </header>
               <p className={styles.comment__body}>{props.comment.content}</p>
-              <i class="fa fa-comments" aria-hidden="true" style={{ fontSize: "2vw" }} onClick={handleAddClick}></i>
-              {add && (
-                <textarea 
-                  ref={textareaRef}
-                  rows={1}
-                  placeholder="Enter some text"
-                  required
-                  autoFocus
-                  
-                  className={styles.comment__textarea}
-                />
-              )}
+              <hr />
+              <div className="row">
+                <button className={styles.add_reply_button} onClick={handleAddClick} style={{"left":"90%"}}><i className="fa fa-comment" /> Reply</button>
+                <br />
+                <br />
+                {add && (
+                  <div>
+                    <textarea 
+                      ref={textareaRef}
+                      rows={1}
+                      placeholder="Enter some text"
+                      required
+                      autoFocus
+                      onChange={handleContentChange}
+                      className={styles.comment__textarea}
+                    />
+                   
+                    
+                    <br />
+                    {save && (
+                      <button className={styles.save_reply_button} onClick={handleAddClick} ><i className="fa fa-save" /> Save</button>
+                    )}
+                  </div>
+                    
+                )}
+              </div>
+              
         </div>
         
     )

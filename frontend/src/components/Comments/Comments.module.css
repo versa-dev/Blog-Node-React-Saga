@@ -59,3 +59,41 @@
     line-height: 1.9;
     border-radius: 48px;
   }
+  .comment__row {
+    display: table;
+    width: 100%;
+  }
+  .comment__icon_div {
+    display: table-cell;
+    width: 10%;
+  }
+.comment__text_div{
+  display: table-cell;
+  width: 80%;
+}
+.add_reply_button {
+    padding: 10px 20px;
+    border: none;
+    text-transform: uppercase;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 1.05rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
+}
+.save_reply_button {
+    padding: 5px 10px;
+    border: none;
+    text-transform: uppercase;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 1.05rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
+    background-color: blue;
+    color:white;
+    position: relative;
+    left:90%;
+}
