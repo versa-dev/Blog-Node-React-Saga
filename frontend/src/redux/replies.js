@@ -25,10 +25,12 @@ export function fetchRepliesFailure(error) {
   };
 }
 
-export function createReply(commentId, content) {
+export function createReply(userId, commentId, content) {
+    
   return {
     type: actionTypes.CREATE_REPLY,
     payload: {
+        userId,
         commentId,
         content,
     },
@@ -37,7 +39,7 @@ export function createReply(commentId, content) {
 
 const initialState = {
   isFetching: false,
-  replies: [],
+  replies:[],
 };
 
 export function reducer(state = initialState, action) {
@@ -47,12 +49,14 @@ export function reducer(state = initialState, action) {
         ...state,
         isFetching: true,
       };
+      
     case actionTypes.FETCH_REPLIES_SUCCESS:
       return {
         ...state,
         isFetching: false,
-        comments: action.payload,
+        replies: action.payload,
       };
+      
     case actionTypes.FETCH_REPLIES_FAILURE:
       return {
         ...state,
@@ -76,8 +80,8 @@ function* fetchRepliesSagaWorker() {
 
 
 function* createReplySagaWorker(action) {
-  const { commentId, content } = action.payload;
-  yield call(RepliesService.createReply, commentId, content);
+  const { userId, commentId, content } = action.payload;
+  yield call(RepliesService.createReply, userId,commentId, content);
   yield call(fetchRepliesSagaWorker);
 }
 
@@ -89,5 +93,6 @@ export function* repliesSagaWatcher() {
 }
 
 export function repliesSelector(state) {
+  
   return state.replies.replies;
 }

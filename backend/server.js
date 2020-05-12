@@ -76,8 +76,8 @@ app.get("/replies", async (req, res, next) => {
 
 app.post("/replies", async (req, res, next) => {
   try {
-    const { comment_id, content } = req.body;
-
+    const { user_id, comment_id, content } = req.body;
+    
     if (!comment_id || !content) res.sendStatus(400);
 
     const reply = await prisma.reply.create({
@@ -88,6 +88,7 @@ app.post("/replies", async (req, res, next) => {
             id: comment_id,
           },
         },
+        user_id,
       },
     });
     res.json(reply).status(204);

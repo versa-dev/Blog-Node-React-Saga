@@ -35,10 +35,10 @@ const Compose = () =>{
         }
         
         createComment(userId, content);
-        setContent("")
+        setContent("");
       },
       
-      [userId, content,selectUser,setCommentContent]
+      [userId, content]
     );
     return(
         <div className={styles.compose}>

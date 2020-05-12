@@ -14,7 +14,7 @@ function CommentList(){
                 [...comments]
                 .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
                 .map((comment)=>{
-                    return <Comment comment={comment} />
+                    return <Comment comment={comment} key={comment.id}/>
                 })
             }
         </div>

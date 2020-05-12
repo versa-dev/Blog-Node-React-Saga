@@ -7,21 +7,17 @@ import {
   createReply as _createReply,
 } from "../redux/replies";
 
-function useComments() {
+function useReplies() {
   const dispatch = useDispatch();
   const replies = useSelector(repliesSelector);
-
+  
   useEffect(() => {
     dispatch(fetchReplies());
   }, [dispatch]);
 
-  const createComment = (commentId, content) =>
-    dispatch(_createReply(commentId, content));
+  const createReply = (userId, commentId, content) =>
+    dispatch(_createReply(userId, commentId, content));
   
-  
-  }
-  
-
   return { replies, createReply };
 }
 

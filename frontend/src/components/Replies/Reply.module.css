@@ -1,0 +1,57 @@
+ .reply-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .reply-header > h1 {
+    font-weight: 500;
+  }
+  
+  .reply > * + * {
+    margin-top: 10px;
+  }
+  
+  .reply {
+    padding: 20px 40px;
+    background-color: rgb(7, 127, 247);
+    border-radius: 5px;
+    box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.2);
+    border-bottom: 10px;
+    margin: 20px;
+  }
+  
+  .reply__header {
+    display: flex;
+    align-items: center;
+  }
+  
+  .reply__heading {
+    flex: 1;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: rgb(213, 235, 255);
+  }
+  
+  .reply_timestamp {
+    font-size: 0.9rem;
+    color: rgb(73, 116, 156);
+  }
+  
+  .reply__body {
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 0.9;
+  }
+  
+  .reply__row {
+    display: table;
+    width: 100%;
+  }
+  .reply__icon_div {
+    display: table-cell;
+    width: 10%;
+  }
+.reply__text_div{
+  display: table-cell;
+  width: 80%;
+}

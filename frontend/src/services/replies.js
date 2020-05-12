@@ -6,8 +6,10 @@ export async function getReplies() {
   return replies;
 }
 
-export async function createReply(commentId, content) {
+export async function createReply(userId,commentId, content) {
+  
   const res = await Axios.post("http://localhost:3001/replies", {
+    user_id: userId,
     comment_id: commentId,
     content: content,
   });

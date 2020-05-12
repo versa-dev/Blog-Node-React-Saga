@@ -59,12 +59,7 @@ export function reducer(state = initialState, action) {
         ...state,
         isFetching: false,
       };
-    case actionTypes.SET_COMMENT_CONTENT:
-      debugger
-      return {
-        ...state,
-        content:action.value
-      };
+    
     default:
       return state;
   }
@@ -97,5 +92,6 @@ export function* commentsSagaWatcher() {
 }
 
 export function commentsSelector(state) {
+  
   return state.comments.comments;
 }

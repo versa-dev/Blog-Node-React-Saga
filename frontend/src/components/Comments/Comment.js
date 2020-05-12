@@ -2,22 +2,60 @@ import React, { useEffect, useState, useRef, useCallback } from "react";
 import styles from './Comments.module.css'
 import autosize from "autosize";
 import useUsers from './../../hooks/useUsers'
+import useReplies from './../../hooks/useReplies';
+import ReplyList from "../Replies/ReplyList";
+import { getUsers } from "../../services/users";
+
 
 function Comment(props) {
   const { users } = useUsers();
+  const { createReply } = useReplies();
+  
+  const { replies } = useReplies();
   const [add, setAdd] = useState(false)
   const [content, setContent] = useState("");
   const [save, setSave] = useState(false);
   const [userId,setUserId] = useState(null);
+
+  useEffect(() => {
+    if (users.length) {
+      setUserId(users[0].id);
+    }
+  }, [users]);
+  //Get the users who can leave reply
+  const filterUser = (user) => {
+    return user.id!=props.comment.user_id
+  }
+  //Toggle add reply 
   const handleAddClick = () => {
     setAdd(!add)
   }
+  //Set the content and show the save button
   const handleContentChange = (e) => {
-    setContent(e.target.value)
-    console.log(content.length);
+    setContent(e.target.value);
     content==""? setSave(false) : setSave(true);
   }
   const handleUserChange = (e) => setUserId(parseInt(e.target.value));
+
+  const handleSubmit = useCallback(
+    (e) => {
+      
+      if (!userId) {
+        alert("No user selected");
+        return;
+      }
+      if(!content){
+        alert("No reply written");
+        return
+      }
+      createReply(userId, props.comment.id, content);
+      setContent("");
+      setAdd(!add)
+    },
+    
+    [userId, content]
+  );
+
   const textareaRef = useRef();
 
   useEffect(() => {
@@ -51,6 +89,7 @@ function Comment(props) {
               required
               autoFocus
               onChange={handleContentChange}
+              value={content}
               className={styles.comment__textarea}
             />
             <br />
@@ -64,7 +103,7 @@ function Comment(props) {
                     onChange={handleUserChange}
                     className="dropdown"
                   >
-                    {users.map((user) => (
+                    {users.filter(filterUser).map((user) => (
                       <option key={user.id} value={user.id}>
                         {user.name}
                       </option>
@@ -74,23 +113,19 @@ function Comment(props) {
               </div>
               <div className="col-md-6">
                 {save && (
-                  <button className={styles.save_reply_button} onClick={handleAddClick} ><i className="fa fa-save" /> Save</button>
+                  <button className={styles.save_reply_button} onClick={handleSubmit}><i className="fa fa-save" /> Save</button>
                 )}
               </div>
             </div>
           </div>
-
         )}
       </div>
-
+      <br />
+      
+      <ReplyList id = {props.comment.id}/>          
     </div>
 
   )
 }
-const mapStateToProps = state => {
-  return {
-    userId: state.userId,
-    content: state.content
-  }
-}
+
 export default Comment
