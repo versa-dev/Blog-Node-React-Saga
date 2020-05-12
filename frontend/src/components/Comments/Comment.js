@@ -49,7 +49,8 @@ function Comment(props) {
         return
       }
       createReply(userId, props.comment.id, content);
-      setContent("")
+      setContent("");
+      setAdd(false);
     },
     
     [userId, content]
@@ -88,6 +89,7 @@ function Comment(props) {
               required
               autoFocus
               onChange={handleContentChange}
+              value={content}
               className={styles.comment__textarea}
             />
             <br />
