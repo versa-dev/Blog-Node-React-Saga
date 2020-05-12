@@ -25,19 +25,19 @@ After completeing the coding portion of the challenge, please answer the followi
 
 **What was the most difficult part of the coding challenge for you? What was the easiest?**
 
-_Add your answer here_
+_Rearranging the original code to various modules are somewhat difficult but not so much. Without mockup design, making front end was a little challenge but once i decide the mockup myself,it was the easiest._
 
 **If there’s one thing you could change about the starter code that was given to you, what would you change and why?**
 
-_Add your answer here_
+_I have already changed the whole code into various modules so it can be reused in the future._
 
 **If a product manager asked you to implement the replies feature for a real product, what questions would you ask them? Explain your rationale.**
 
-_Add your answer here_
+_In that case i want to ask him to hire a designer with wonderful eye for design_
 
 **What considerations would you make if you were asked to modify this comment system to support 1000 comments? How about 1 million? (Be as specific as possible about what changes you would make to the backend, frontend, deployment, etc.)**
 
-_Add your answer here_
+_In that case we should consider about the loading time from backend to frontend. Redux saga can be a part of solution and we should consider about the database design in more efficient way._
 
 ## :file_folder: Project Structure
 
