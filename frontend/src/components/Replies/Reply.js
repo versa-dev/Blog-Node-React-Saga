@@ -5,12 +5,17 @@ import useUsers from './../../hooks/useUsers'
 const Reply = (props) => {
     const reply = props.reply;
     const { users } = useUsers();
-    
+    const getUserName = (reply)=>{
+        for(var i=0;i<users.length;i++){
+            if(users[i].id==reply.user_id)
+                return users[i].name;
+        }
+    }
     return (
         <div className={styles.reply}>
             <header className={styles.reply__header}>
                 <h2 className={styles.reply__heading}>
-                    {users[reply.user_id].name} replied...
+                    {getUserName(reply)} replied...
                 </h2>
                 <span className={styles.comment_timestamp}>
                     {new Intl.DateTimeFormat("en-US", {

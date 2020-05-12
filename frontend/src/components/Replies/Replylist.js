@@ -13,6 +13,7 @@ function ReplyList( props ){
             
             {
                 [...replies]
+                .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
                 .filter(getMyReplies)
                 .map((reply)=>{
                     return <Reply reply={reply}/>

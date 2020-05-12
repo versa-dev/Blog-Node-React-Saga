@@ -37,7 +37,9 @@ INSERT INTO user
   (name)
 VALUES
   ('Alice'),
-  ('Bob');
+  ('Bob'),
+  ('Jack');
+
 `;
 
 const db = new sqlite.Database(
