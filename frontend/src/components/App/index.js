@@ -1,9 +1,5 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
-import autosize from "autosize";
-
+import React from "react";
 import "./App.css";
-import useComments from "../../hooks/useComments";
-import useUsers from "../../hooks/useUsers";
 import Compose from '../Compose/Compose'
 import CommetnList from '../Comments/CommentList'
 

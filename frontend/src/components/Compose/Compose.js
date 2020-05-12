@@ -3,12 +3,12 @@ import styles from './Compose.module.css'
 import useUsers from './../../hooks/useUsers'
 import autosize from "autosize";
 import useComments from "../../hooks/useComments";
-import { connect } from "react-redux"
+
 
 
 const Compose = () =>{ 
-    const { users , selectUser} = useUsers();
-    const { createComment, setCommentContent } = useComments();
+    const { users } = useUsers();
+    const { createComment } = useComments();
     const textareaRef = useRef();
 
     useEffect(() => {

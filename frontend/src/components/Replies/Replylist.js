@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React from "react";
 import useReplies from "../../hooks/useReplies";
 import Reply from "./Reply";
 
@@ -6,7 +6,7 @@ function ReplyList( props ){
     const {replies} = useReplies();
     
     const getMyReplies = (reply) => {
-        return reply.comment_id == props.id
+        return reply.comment_id === props.id
     }
     return(
         <div>

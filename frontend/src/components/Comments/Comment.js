@@ -4,28 +4,28 @@ import autosize from "autosize";
 import useUsers from './../../hooks/useUsers'
 import useReplies from './../../hooks/useReplies';
 import ReplyList from "../Replies/ReplyList";
-import { getUsers } from "../../services/users";
 
 
 function Comment(props) {
   const { users } = useUsers();
   const { createReply } = useReplies();
-  
-  const { replies } = useReplies();
   const [add, setAdd] = useState(false)
   const [content, setContent] = useState("");
   const [save, setSave] = useState(false);
   const [userId,setUserId] = useState(null);
 
-  useEffect(() => {
-    if (users.length) {
-      setUserId(users[0].id);
-    }
-  }, [users]);
   //Get the users who can leave reply
   const filterUser = (user) => {
-    return user.id!=props.comment.user_id
+    return user.id!==props.comment.user_id
   }
+
+  useEffect(() => {
+    if (users.length) {
+      var new_users = users.filter(filterUser);
+      setUserId(new_users[0].id);
+    }
+  }, [users]);
+
   //Toggle add reply 
   const handleAddClick = () => {
     setAdd(!add)
@@ -33,7 +33,7 @@ function Comment(props) {
   //Set the content and show the save button
   const handleContentChange = (e) => {
     setContent(e.target.value);
-    content==""? setSave(false) : setSave(true);
+    (content.length-1)? setSave(true) : setSave(false);
   }
   const handleUserChange = (e) => setUserId(parseInt(e.target.value));
 
@@ -49,8 +49,7 @@ function Comment(props) {
         return
       }
       createReply(userId, props.comment.id, content);
-      setContent("");
-      setAdd(!add)
+      setContent("")
     },
     
     [userId, content]
@@ -89,7 +88,6 @@ function Comment(props) {
               required
               autoFocus
               onChange={handleContentChange}
-              value={content}
               className={styles.comment__textarea}
             />
             <br />
