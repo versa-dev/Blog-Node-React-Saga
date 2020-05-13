@@ -7,7 +7,7 @@ const Reply = (props) => {
     const { users } = useUsers();
     const getUserName = (reply)=>{
         for(var i=0;i<users.length;i++){
-            if(users[i].id==reply.user_id)
+            if(users[i].id===reply.user_id)
                 return users[i].name;
         }
     }
