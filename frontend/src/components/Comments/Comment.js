@@ -20,11 +20,13 @@ function Comment(props) {
   }
 
   useEffect(() => {
+  
+
     if (users.length) {
       var new_users = users.filter(filterUser);
       setUserId(new_users[0].id);
     }
-  }, [users]);
+  }, [users,props.comment.user_id]);
 
   //Toggle add reply 
   const handleAddClick = () => {
@@ -33,7 +35,7 @@ function Comment(props) {
   //Set the content and show the save button
   const handleContentChange = (e) => {
     setContent(e.target.value);
-    (content.length-1)? setSave(true) : setSave(false);
+    (content.length-1)||(content==="")? setSave(true) : setSave(false);
   }
   const handleUserChange = (e) => setUserId(parseInt(e.target.value));
 
@@ -53,7 +55,7 @@ function Comment(props) {
       setAdd(false);
     },
     
-    [userId, content]
+    [userId, content,props.comment.id,createReply]
   );
 
   const textareaRef = useRef();

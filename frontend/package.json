@@ -2,6 +2,7 @@
   "name": "frontend",
   "license": "UNLICENSED",
   "version": "0.1.0",
+  
   "private": true,
   "dependencies": {
     "autosize": "^4.0.2",
@@ -35,5 +36,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy":"http://localhost:3001/"
 }
