@@ -2,9 +2,12 @@ const { PrismaClient } = require("@prisma/client");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
+const path = require("path");
 const prisma = new PrismaClient();
 const app = express();
+
+app.use(express.static(path.resolve(__dirname, '../frontend/build')));
+app.disable('x-powered-by');
 
 app.use(bodyParser.json());
 app.use(
@@ -12,6 +15,9 @@ app.use(
     origin: "*",
   })
 );
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../frontend/build/index.html'));
+});
 
 app.get("/users", async (req, res, next) => {
   try {
@@ -37,7 +43,10 @@ app.get("/comments", async (req, res, next) => {
 
 app.post("/comments", async (req, res, next) => {
   try {
-    const { user_id, content } = req.body;
+    const {
+      user_id,
+      content
+    } = req.body;
 
     if (!user_id || !content) res.sendStatus(400);
 
@@ -76,8 +85,12 @@ app.get("/replies", async (req, res, next) => {
 
 app.post("/replies", async (req, res, next) => {
   try {
-    const { user_id, comment_id, content } = req.body;
-    
+    const {
+      user_id,
+      comment_id,
+      content
+    } = req.body;
+
     if (!comment_id || !content) res.sendStatus(400);
 
     const reply = await prisma.reply.create({
@@ -105,9 +118,12 @@ app.post("/replies", async (req, res, next) => {
 
 app.use((err, req, res, next) => {
   console.error(err);
-  res.status(500).json({ error: err.toString() });
+  res.status(500).json({
+    error: err.toString()
+  });
 });
 
-app.listen(3001, () => {
+app.listen(process.env.PORT || 3001, () => {
+
   console.log(`Server ready at http://localhost:3001`);
 });

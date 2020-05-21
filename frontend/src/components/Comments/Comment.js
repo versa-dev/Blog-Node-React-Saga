@@ -34,8 +34,9 @@ function Comment(props) {
   }
   //Set the content and show the save button
   const handleContentChange = (e) => {
+    debugger
     setContent(e.target.value);
-    (content.length-1)||(content==="")? setSave(true) : setSave(false);
+    (content.length-1)&&(content==="")? setSave(true) : setSave(false);
   }
   const handleUserChange = (e) => setUserId(parseInt(e.target.value));
 

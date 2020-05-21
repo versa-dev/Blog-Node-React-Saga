@@ -10,7 +10,7 @@ const Compose = () =>{
     const { users } = useUsers();
     const { createComment } = useComments();
     const textareaRef = useRef();
-
+    console.log(users)
     useEffect(() => {
       autosize(textareaRef.current);
     }, []);

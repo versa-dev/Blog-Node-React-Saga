@@ -33,11 +33,17 @@ _I have already changed the whole code into various modules so it can be reused 
 
 **If a product manager asked you to implement the replies feature for a real product, what questions would you ask them? Explain your rationale.**
 
-_In that case i want to ask him to hire a designer with wonderful eye for design_
+1, We should make our application in a more interactive and engaging user experience. We should investigate the user experience at first and their demand at first.
 
+2, In order for real-time functionality we should use cloud web services and APIs. Allowing multiple users to edit in real time as collaborators, without friction or delay, is a key component to its success.
+
+So I'd love to ask product manager to investigate user experience in detail including user interface and other elements and which clouding service we are going to use.
 **What considerations would you make if you were asked to modify this comment system to support 1000 comments? How about 1 million? (Be as specific as possible about what changes you would make to the backend, frontend, deployment, etc.)**
 
-_In that case we should consider about the loading time from backend to frontend. Redux saga can be a part of solution and we should consider about the database design in more efficient way._
+1, For backend, we should use multi-threading for making sure that multi users are able to use them. Like slack or chatting system, we should use channels for it. 
+2, For database, since we should make sure a lot of data are being loaded and called when loading the system, so we use clouding data base engine not like the one we used for our testing app.
+3, For frontend, using async-functionality for fetching data is the best choice like we used redux-saga for our app.
+4, When deployment we should consider the compatibility with data base management.
 
 ## :file_folder: Project Structure
 
